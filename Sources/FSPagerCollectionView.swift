@@ -55,7 +55,11 @@ class FSPagerCollectionView: UICollectionView {
             self.isPrefetchingEnabled = false
         }
         if #available(iOS 11.0, *) {
-            self.contentInsetAdjustmentBehavior = .never
+            if #available(tvOS 11.0, *) {
+                self.contentInsetAdjustmentBehavior = .never
+            } else {
+                // Fallback on earlier versions
+            }
         }
         #if !os(tvOS)
             self.scrollsToTop = false
